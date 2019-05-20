@@ -66,7 +66,7 @@
         </javaClientGenerator>
 
         <!-- 要生成的表 tableName是数据库中的表名或视图名 domainObjectName是实体类名-->
-        <table tableName="newstype" domainObjectName="NewsType" mapperName="NewsTypeDao"
+        <table tableName="marketType" domainObjectName="MarketType" mapperName="MarketTypeDao"
                enableCountByExample="false"
                enableUpdateByExample="false"
                enableDeleteByExample="false"
@@ -80,21 +80,9 @@
             <generatedKey column="id" sqlStatement="Mysql" identity="true" />
             <!-- 指定列的java数据类型 -->
             <columnOverride column="id" jdbcType="TINYINT" javaType="int"/>
-            <columnOverride column="typename" property="typeName"></columnOverride>
+            <columnOverride column="type" property="type"></columnOverride>
         </table>
-        <table tableName="news" domainObjectName="News"  mapperName="NewsDao"
-               enableCountByExample="false"
-               enableUpdateByExample="false"
-               enableDeleteByExample="false"
-               enableSelectByExample="false"
-               selectByExampleQueryId="false">
-            <property name="useActualColumnNames" value="true" />
-            <generatedKey column="id" sqlStatement="Mysql" identity="true" />
-            <columnOverride column="id" javaType="int"/>
-            <columnOverride column="newstypeid" javaType="int"/>
-            <columnOverride column="read" javaType="int"/>
-            <!--<oneToOne mappingTable="newstype" column="id" joinColumn="newstypeid"></oneToOne>-->
-        </table>
+
 
         <!-- 通配符情况 -->
         <!--%代表全部表-->
