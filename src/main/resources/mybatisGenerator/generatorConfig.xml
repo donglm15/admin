@@ -58,7 +58,7 @@
 
         <!-- 生成DAO文件-->
         <!-- XMLMAPPER生成xml映射文件, ANNOTATEDMAPPER生成的dao采用注解来写sql -->
-        <javaClientGenerator type="${dao_type}"
+        <javaClientGenerator activityType="${dao_type}"
                              targetPackage="${daos_package}"
                              targetProject="${daos_dir}">
             <!-- enableSubPackages:是否让schema作为包的后缀 -->
@@ -101,7 +101,7 @@
             <generatedKey column="id" sqlStatement="Mysql" identity="true" />
             <!-- 指定列的java数据类型 -->
             <columnOverride column="id" jdbcType="TINYINT" javaType="int"/>
-            <columnOverride column="type" property="type"></columnOverride>
+            <columnOverride column="activityType" property="activityType"></columnOverride>
         </table>
 
 
@@ -118,7 +118,7 @@
             <!-- 数据库表主键 -->
             <generatedKey column="id" sqlStatement="Mysql" identity="true" />
             <!-- 指定列的java数据类型 -->
-            <columnOverride column="id" jdbcType="TINYINT" javaType="int"/>
+            <columnOverride column="id" jdbcType="TINYINT" javaType="int"/>/;
             <columnOverride column="activityStatusId" javaType="int"/>
             <columnOverride column="people" javaType="int"/>
             <columnOverride column="uid" javaType="int"/>
