@@ -1,103 +1,105 @@
 package com.unicom.admin.model;
 
+import java.util.Date;
+
 public class Market {
-    private tinyint id;
+    private int id;
 
-    private varchar title;
+    private String title;
 
-    private datetime startDate;
+    private Date startDate;
 
-    private datetime endDate;
+    private Date endDate;
 
-    private varchar employName;
+    private String employName;
 
-    private tinyint importance;
+    private int importance;
 
-    private varchar jobPlace;
+    private String jobPlace;
 
-    private varchar content;
+    private String content;
 
-    private tinyint marketTypeId;
+    private int marketTypeId;
 
-    private tinyint statusId;
+    private int statusId;
 
-    public tinyint getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(tinyint id) {
+    public void setId(int id) {
         this.id = id;
     }
 
-    public varchar getTitle() {
+    public String getTitle() {
         return title;
     }
 
-    public void setTitle(varchar title) {
-        this.title = title;
+    public void setTitle(String title) {
+        this.title = title == null ? null : title.trim();
     }
 
-    public datetime getStartDate() {
+    public Date getStartDate() {
         return startDate;
     }
 
-    public void setStartDate(datetime startDate) {
+    public void setStartDate(Date startDate) {
         this.startDate = startDate;
     }
 
-    public datetime getEndDate() {
+    public Date getEndDate() {
         return endDate;
     }
 
-    public void setEndDate(datetime endDate) {
+    public void setEndDate(Date endDate) {
         this.endDate = endDate;
     }
 
-    public varchar getEmployName() {
+    public String getEmployName() {
         return employName;
     }
 
-    public void setEmployName(varchar employName) {
-        this.employName = employName;
+    public void setEmployName(String employName) {
+        this.employName = employName == null ? null : employName.trim();
     }
 
-    public tinyint getImportance() {
+    public int getImportance() {
         return importance;
     }
 
-    public void setImportance(tinyint importance) {
+    public void setImportance(int importance) {
         this.importance = importance;
     }
 
-    public varchar getJobPlace() {
+    public String getJobPlace() {
         return jobPlace;
     }
 
-    public void setJobPlace(varchar jobPlace) {
-        this.jobPlace = jobPlace;
+    public void setJobPlace(String jobPlace) {
+        this.jobPlace = jobPlace == null ? null : jobPlace.trim();
     }
 
-    public varchar getContent() {
+    public String getContent() {
         return content;
     }
 
-    public void setContent(varchar content) {
-        this.content = content;
+    public void setContent(String content) {
+        this.content = content == null ? null : content.trim();
     }
 
-    public tinyint getMarketTypeId() {
+    public int getMarketTypeId() {
         return marketTypeId;
     }
 
-    public void setMarketTypeId(tinyint marketTypeId) {
+    public void setMarketTypeId(int marketTypeId) {
         this.marketTypeId = marketTypeId;
     }
 
-    public tinyint getStatusId() {
+    public int getStatusId() {
         return statusId;
     }
 
-    public void setStatusId(tinyint statusId) {
+    public void setStatusId(int statusId) {
         this.statusId = statusId;
     }
 }

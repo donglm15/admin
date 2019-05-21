@@ -1,7 +1,5 @@
 package com.unicom.admin.dao;
 
-
-
-public interface MarketDao {
+public interface MarketTypeDao {
 
 }
