@@ -6,7 +6,7 @@ package com.unicom.admin.model;
 * time:2019.05.21 14:37
 * */
 
-public class PositionType {
+public class position {
     private int id;
 
     private String positionName;
@@ -27,10 +27,10 @@ public class PositionType {
         this.positionName = positionName == null ? null : positionName.trim();
     }
 
-    public PositionType() {
+    public position() {
     }
 
-    public PositionType(int id, String positionName) {
+    public position(int id, String positionName) {
         this.id = id;
         this.positionName = positionName;
     }
