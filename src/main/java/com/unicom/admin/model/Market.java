@@ -1,5 +1,7 @@
 package com.unicom.admin.model;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 import java.util.Date;
 
 public class Market {
@@ -7,8 +9,7 @@ public class Market {
 
     private String title;
 
-    private Date startDate;
-
+    @JsonFormat(pattern = "yyyy-MM-dd",locale = "zh",timezone = "GMT+8")
     private Date endDate;
 
     private String employName;
@@ -19,9 +20,9 @@ public class Market {
 
     private String content;
 
-    private int marketTypeId;
+    private String reviewer;
 
-    private int statusId;
+    private MarketType marketType;
 
     public int getId() {
         return id;
@@ -37,14 +38,6 @@ public class Market {
 
     public void setTitle(String title) {
         this.title = title == null ? null : title.trim();
-    }
-
-    public Date getStartDate() {
-        return startDate;
-    }
-
-    public void setStartDate(Date startDate) {
-        this.startDate = startDate;
     }
 
     public Date getEndDate() {
@@ -87,19 +80,34 @@ public class Market {
         this.content = content == null ? null : content.trim();
     }
 
-    public int getMarketTypeId() {
-        return marketTypeId;
+    public String getReviewer() {
+        return reviewer;
     }
 
-    public void setMarketTypeId(int marketTypeId) {
-        this.marketTypeId = marketTypeId;
+    public void getReviewer(String reviewer) {
+        this.reviewer = reviewer == null ? null : reviewer.trim();
     }
 
-    public int getStatusId() {
-        return statusId;
+    public MarketType getMarketType() {
+        return marketType;
     }
 
-    public void setStatusId(int statusId) {
-        this.statusId = statusId;
+    public void setMarketType(MarketType marketType) {
+        this.marketType = marketType;
+    }
+
+    public Market() {
+    }
+
+    public Market(int id, String title, Date endDate, String employName, int importance, String jobPlace, String content, String reviewer, MarketType marketType) {
+        this.id = id;
+        this.title = title;
+        this.endDate = endDate;
+        this.employName = employName;
+        this.importance = importance;
+        this.jobPlace = jobPlace;
+        this.content = content;
+        this.reviewer = reviewer;
+        this.marketType = marketType;
     }
 }

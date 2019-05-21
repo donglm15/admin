@@ -15,11 +15,9 @@ public class User {
 
     private String userName;
 
-    private String organization;
+    private String Organization;
 
-    private int positiontypeid;
-
-    private PositionType positionType;
+    private position position;
 
     private String employeeNumber;
 
@@ -60,27 +58,19 @@ public class User {
     }
 
     public String getOrganization() {
-        return organization;
+        return Organization;
     }
 
     public void setOrganization(String organization) {
-        this.organization = organization == null ? null : organization.trim();
+        this.Organization = organization == null ? null : organization.trim();
     }
 
-    public int getPositiontypeid() {
-        return positiontypeid;
+    public position getPosition() {
+        return position;
     }
 
-    public void setPositiontypeid(int positiontypeid) {
-        this.positiontypeid = positiontypeid;
-    }
-
-    public PositionType getPositionType() {
-        return positionType;
-    }
-
-    public void setPositionType(PositionType positionType) {
-        this.positionType = positionType;
+    public void setPosition(position position) {
+        this.position = position;
     }
 
     public String getEmployeeNumber() {
@@ -142,13 +132,12 @@ public class User {
     public User() {
     }
 
-    public User(int id, String account, String userName, String organization, int positiontypeid, PositionType positionType, String employeeNumber, String phone, Date lastLoginTime, String profileAddress, String introduction, String speciality, String activity) {
+    public User(int id, String account, String userName, String organization, position positionType, String employeeNumber, String phone, Date lastLoginTime, String profileAddress, String introduction, String speciality, String activity) {
         this.id = id;
         this.account = account;
         this.userName = userName;
-        this.organization = organization;
-        this.positiontypeid = positiontypeid;
-        this.positionType = positionType;
+        this.Organization = organization;
+        this.position = positionType;
         this.employeeNumber = employeeNumber;
         this.phone = phone;
         this.lastLoginTime = lastLoginTime;
