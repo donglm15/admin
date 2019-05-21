@@ -8,7 +8,7 @@
     <properties resource="mybatisGenerator/generatorConfig.properties"/>
 
     <!-- 数据库驱动:选择你的本地硬盘上面的数据库驱动包-->
-    <classPathEntry location="D:/work/apache-maven_repository/mysql/mysql-connector-java/5.1.45/mysql-connector-java-5.1.45.jar"/>
+    <classPathEntry location="E:\Maven\apache-maven_repository\mysql\mysql-connector-java\8.0.15\mysql-connector-java-8.0.15.jar"/>
 
     <context id="MysqlContext"  targetRuntime="MyBatis3">
         <!-- 注释 -->
@@ -66,25 +66,49 @@
         </javaClientGenerator>
 
         <!-- 要生成的表 tableName是数据库中的表名或视图名 domainObjectName是实体类名-->
-        <table tableName="market" domainObjectName="Market"  mapperName="MarketDao"
+        <table tableName="meeting" domainObjectName="Meeting"  mapperName="MeetingDao"
                enableCountByExample="false"
-               enableUpdateByExample="true"
-               enableDeleteByExample="true"
-               enableSelectByExample="true"
-               selectByExampleQueryId="true">
+               enableUpdateByExample="false"
+               enableDeleteByExample="false"
+               enableSelectByExample="false"
+               selectByExampleQueryId="false">
             <property name="useActualColumnNames" value="true" />
             <generatedKey column="id" sqlStatement="Mysql" identity="true" />
-            <columnOverride column="id" javaType="tinyint"/>
-            <columnOverride column="title" javaType="varchar"/>
-            <columnOverride column="startDate" javaType="datetime"/>
-            <columnOverride column="endDate" javaType="datetime"/>
-            <columnOverride column="employName" javaType="varchar"/>
-            <columnOverride column="importance" javaType="tinyint"/>
-            <columnOverride column="jobPlace" javaType="varchar"/>
-            <columnOverride column="content" javaType="varchar"/>
-            <columnOverride column="marketTypeId" javaType="tinyint"/>
-            <columnOverride column="statusId" javaType="tinyint"/>
+            <columnOverride column="id" javaType="int"/>
+            <columnOverride column="peopleNum" javaType="int"/>
+            <columnOverride column="ifMoreid" javaType="int"/>
+            <columnOverride column="ifOpenid" javaType="int"/>
             <!--<oneToOne mappingTable="newstype" column="id" joinColumn="newstypeid"></oneToOne>-->
+        </table>
+
+        <table tableName="announcement" domainObjectName="Announcement"  mapperName="AnnouncementDao"
+               enableCountByExample="false"
+               enableUpdateByExample="false"
+               enableDeleteByExample="false"
+               enableSelectByExample="false"
+               selectByExampleQueryId="false">
+            <property name="useActualColumnNames" value="true" />
+            <generatedKey column="id" sqlStatement="Mysql" identity="true" />
+            <columnOverride column="id" javaType="int"/>
+            <columnOverride column="meetingStatusid" javaType="int"/>
+            <columnOverride column="dateLong" javaType="int"/>
+            <!--<oneToOne mappingTable="newstype" column="id" joinColumn="newstypeid"></oneToOne>-->
+        </table>
+        <table tableName="announcementmeetingstatus" domainObjectName="AnnouncementMeetingStatus" mapperName="AnnouncementMeetingStatusDao"
+               enableCountByExample="false"
+               enableUpdateByExample="false"
+               enableDeleteByExample="false"
+               enableSelectByExample="false"
+               selectByExampleQueryId="false">
+            <!--开启驼峰命名法-->
+            <property name="useActualColumnNames" value="true" />
+            <!-- 忽略列，不生成bean 字段 -->
+            <!--<ignoreColumn column="id" />-->
+            <!-- 数据库表主键 -->
+            <generatedKey column="id" sqlStatement="Mysql" identity="true" />
+            <!-- 指定列的java数据类型 -->
+            <columnOverride column="id" jdbcType="TINYINT" javaType="int"/>
+            <columnOverride column="meetingStatus" property="meetingStatus"></columnOverride>
         </table>
 
         <!-- 通配符情况 -->
