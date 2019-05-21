@@ -1,4 +1,5 @@
 package com.unicom.admin.controller;
 
-public class marketController {
+public class MarketController {
+
 }

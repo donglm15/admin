@@ -8,7 +8,7 @@
     <properties resource="mybatisGenerator/generatorConfig.properties"/>
 
     <!-- 数据库驱动:选择你的本地硬盘上面的数据库驱动包-->
-    <classPathEntry location="D:/java/apache-maven_repository/mysql/mysql-connector-java/8.0.15/mysql-connector-java-8.0.15.jar"/>
+    <classPathEntry location="D:/work/apache-maven_repository/mysql/mysql-connector-java/5.1.45/mysql-connector-java-5.1.45.jar"/>
 
     <context id="MysqlContext"  targetRuntime="MyBatis3">
         <!-- 注释 -->
@@ -66,11 +66,11 @@
         </javaClientGenerator>
 
         <!-- 要生成的表 tableName是数据库中的表名或视图名 domainObjectName是实体类名-->
-        <table tableName="Info" domainObjectName="Info" mapperName="InfoDao"
+        <table tableName="markettype" domainObjectName="MarketType" mapperName="MarketTypeDao"
                enableCountByExample="false"
-               enableUpdateByExample="true"
-               enableDeleteByExample="true"
-               enableSelectByExample="true"
+               enableUpdateByExample="false"
+               enableDeleteByExample="false"
+               enableSelectByExample="false"
                selectByExampleQueryId="false">
             <!--开启驼峰命名法-->
             <property name="useActualColumnNames" value="true" />
@@ -80,9 +80,38 @@
             <generatedKey column="id" sqlStatement="Mysql" identity="true" />
             <!-- 指定列的java数据类型 -->
             <columnOverride column="id" jdbcType="TINYINT" javaType="int"/>
-            <columnOverride column="type" property="type"></columnOverride>
+            <columnOverride column="typeName" property="typeName"></columnOverride>
         </table>
-
+        <table tableName="marketstatus" domainObjectName="MarketStatus" mapperName="MarketStatusDao"
+               enableCountByExample="false"
+               enableUpdateByExample="false"
+               enableDeleteByExample="false"
+               enableSelectByExample="false"
+               selectByExampleQueryId="false">
+            <!--开启驼峰命名法-->
+            <property name="useActualColumnNames" value="true" />
+            <!-- 忽略列，不生成bean 字段 -->
+            <!--<ignoreColumn column="id" />-->
+            <!-- 数据库表主键 -->
+            <generatedKey column="id" sqlStatement="Mysql" identity="true" />
+            <!-- 指定列的java数据类型 -->
+            <columnOverride column="id" jdbcType="TINYINT" javaType="int"/>
+            <columnOverride column="status" property="status"></columnOverride>
+        </table>
+        <table tableName="market" domainObjectName="Market"  mapperName="MarketDao"
+               enableCountByExample="false"
+               enableUpdateByExample="false"
+               enableDeleteByExample="false"
+               enableSelectByExample="false"
+               selectByExampleQueryId="false">
+            <property name="useActualColumnNames" value="true" />
+            <generatedKey column="id" sqlStatement="Mysql" identity="true" />
+            <columnOverride column="id" javaType="int"/>
+            <columnOverride column="importance" javaType="int"/>
+            <columnOverride column="marketTypeId" javaType="int"/>
+            <columnOverride column="statusId" javaType="int"/>
+            <!--<oneToOne mappingTable="newstype" column="id" joinColumn="newstypeid"></oneToOne>-->
+        </table>
 
         <!-- 通配符情况 -->
         <!--%代表全部表-->
