@@ -66,21 +66,25 @@
         </javaClientGenerator>
 
         <!-- 要生成的表 tableName是数据库中的表名或视图名 domainObjectName是实体类名-->
-        <table tableName="marketType" domainObjectName="MarketType" mapperName="MarketTypeDao"
+        <table tableName="market" domainObjectName="Market"  mapperName="MarketDao"
                enableCountByExample="false"
-               enableUpdateByExample="false"
-               enableDeleteByExample="false"
-               enableSelectByExample="false"
-               selectByExampleQueryId="false">
-            <!--开启驼峰命名法-->
+               enableUpdateByExample="true"
+               enableDeleteByExample="true"
+               enableSelectByExample="true"
+               selectByExampleQueryId="true">
             <property name="useActualColumnNames" value="true" />
-            <!-- 忽略列，不生成bean 字段 -->
-            <!--<ignoreColumn column="id" />-->
-            <!-- 数据库表主键 -->
             <generatedKey column="id" sqlStatement="Mysql" identity="true" />
-            <!-- 指定列的java数据类型 -->
-            <columnOverride column="id" jdbcType="TINYINT" javaType="int"/>
-            <columnOverride column="type" property="type"></columnOverride>
+            <columnOverride column="id" javaType="tinyint"/>
+            <columnOverride column="title" javaType="varchar"/>
+            <columnOverride column="startDate" javaType="datetime"/>
+            <columnOverride column="endDate" javaType="datetime"/>
+            <columnOverride column="employName" javaType="varchar"/>
+            <columnOverride column="importance" javaType="tinyint"/>
+            <columnOverride column="jobPlace" javaType="varchar"/>
+            <columnOverride column="content" javaType="varchar"/>
+            <columnOverride column="marketTypeId" javaType="tinyint"/>
+            <columnOverride column="statusId" javaType="tinyint"/>
+            <!--<oneToOne mappingTable="newstype" column="id" joinColumn="newstypeid"></oneToOne>-->
         </table>
 
         <table tableName="activitystatus" domainObjectName="ActivityType" mapperName="ActivityTypeDao"

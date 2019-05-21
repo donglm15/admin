@@ -6,10 +6,10 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 //@SpringBootApplication(exclude = DataSourceAutoConfiguration.class)
 @SpringBootApplication
 
-public class NewsApplication {
+public class AdminApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(NewsApplication.class, args);
+		SpringApplication.run(AdminApplication.class, args);
 	}
 
 }
