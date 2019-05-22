@@ -25,7 +25,7 @@ public class Activity {
     @JsonFormat(pattern = "yyyy-MM-dd hh:mm",locale = "zh",timezone = "GTM+8")
     private Date endTime;
 
-    private int uid;
+    private String uid;
 
     private String master;
 
@@ -107,11 +107,11 @@ public class Activity {
         this.endTime = endTime;
     }
 
-    public int getUid() {
+    public String getUid() {
         return uid;
     }
 
-    public void setUid(int uid) {
+    public void setUid(String uid) {
         this.uid = uid;
     }
 
@@ -150,7 +150,7 @@ public class Activity {
     public Activity() {
     }
 
-    public Activity(int id, ActivityType activityType, int people, String tag, String prize, String title, String address, Date startTime, Date endTime, int uid, String master, String content, String message, String other) {
+    public Activity(int id, ActivityType activityType, int people, String tag, String prize, String title, String address, Date startTime, Date endTime, String uid, String master, String content, String message, String other) {
         this.id = id;
         this.activityType = activityType;
         this.people = people;
