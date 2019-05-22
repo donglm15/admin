@@ -1,4 +1,4 @@
-package com.unicom.admin.controller;
+package com.unicom.admin.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

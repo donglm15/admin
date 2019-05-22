@@ -24,6 +24,8 @@ public class Market {
 
     private MarketType marketType;
 
+    private MarketStatus marketStatus;
+
     public int getId() {
         return id;
     }
@@ -84,8 +86,8 @@ public class Market {
         return reviewer;
     }
 
-    public void getReviewer(String reviewer) {
-        this.reviewer = reviewer == null ? null : reviewer.trim();
+    public void setReviewer(String reviewer) {
+        this.reviewer = reviewer;
     }
 
     public MarketType getMarketType() {
@@ -96,10 +98,19 @@ public class Market {
         this.marketType = marketType;
     }
 
+    public MarketStatus getMarketStatus() {
+        return marketStatus;
+    }
+
+    public void setMarketStatus(MarketStatus marketStatus) {
+        this.marketStatus = marketStatus;
+    }
+
+
     public Market() {
     }
 
-    public Market(int id, String title, Date endDate, String employName, int importance, String jobPlace, String content, String reviewer, MarketType marketType) {
+    public Market(int id, String title, Date endDate, String employName, int importance, String jobPlace, String content, String reviewer, MarketType marketType,MarketStatus marketStatus) {
         this.id = id;
         this.title = title;
         this.endDate = endDate;
@@ -109,5 +120,7 @@ public class Market {
         this.content = content;
         this.reviewer = reviewer;
         this.marketType = marketType;
+        this.marketStatus = marketStatus;
     }
+
 }
