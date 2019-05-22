@@ -20,7 +20,25 @@ public class MarketService {
         return marketDao.getAllMarket();
     }
     //后端分页
-    public List<Market> getMarketByCon(String title, int importance, String marketType, String sort){
+    public List<Market> getMarketByCon(String title, String importance, String marketType, String sort){
         return marketDao.getMarketByCondition(title,importance,marketType,sort);
+    }
+    //新增
+    public int insert(Market market){
+        marketDao.create(market);
+        return market.getId();
+    }
+
+    //查看
+    public Market getMarketById(int id){
+        return  marketDao.getMarketById(id);
+    }
+    //编辑
+    public int updateMarket(Market market){
+        return  marketDao.updateMarket(market);
+    }
+    //删除
+    public int delete(int id){
+        return marketDao.deleteMarket(id);
     }
 }
