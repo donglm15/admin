@@ -31,8 +31,8 @@ public class MarketController {
             @RequestParam(name="page",defaultValue = "1") Integer page,
             @RequestParam(name = "limit",defaultValue = "10") Integer limit,
             @RequestParam(name = "title",defaultValue = "") String title,
-            @RequestParam(name = "importance",defaultValue = "") Integer importance,
-            @RequestParam(name = "type",defaultValue = "") String marketType,
+            @RequestParam(name = "importance",defaultValue = "") String importance,
+            @RequestParam(name = "marketType",defaultValue = "") String marketType,
             @RequestParam(name = "sort",defaultValue = "+id") String sort
     )
     {

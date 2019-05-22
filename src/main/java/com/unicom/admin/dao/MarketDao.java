@@ -49,7 +49,7 @@ public interface MarketDao {
     })
      List<Market> getMarketByCondition(
             @Param("title") String title,
-            @Param("importance") int importance,
+            @Param("importance") String importance,
             @Param("marketType") String marketType,
             @Param("sort") String sort
     );
