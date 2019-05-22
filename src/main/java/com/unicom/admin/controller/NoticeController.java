@@ -62,7 +62,7 @@ public class NoticeController {
         return new JSONResult().ok("success");
     }
 
-    @PostMapping(value = "updateOne")
+    @GetMapping(value = "updateOne")
     public JSONResult updateStatus(@RequestParam(name = "noticeId") int noticeId,@RequestParam(name = "noticeStatus") String noticeStatus){
         noticeService.updateStatus(noticeId,noticeStatus);
         return new JSONResult().ok("success");
