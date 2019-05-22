@@ -42,4 +42,22 @@ public class UserManagerService {
         return user.getId();
     }
 
+    //查看用户详情
+    public User getUserById(int id){
+        return userDao.getUserById(id);
+    }
+
+    //由id编辑（修改）一条用户信息
+    public int updateUser(int id,String account,String userName,
+                          String Organization,int position,String employeeNumber,
+                          String phone,String lastLoginTime){
+        System.out.println(userName);
+        return userDao.updateUser(id,account,userName,Organization,position,employeeNumber,phone,lastLoginTime);
+    }
+
+    //删除
+    public int deleteUser(int id){
+        return userDao.deleteUser(id);
+    }
+
 }
