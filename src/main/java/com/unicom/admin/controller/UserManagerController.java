@@ -108,4 +108,11 @@ public class UserManagerController {
         userManagerService.updateUser(id,account,userName,Organization,position,employeeNumber,phone,lastLoginTime);
         return new JSONResult().ok("success");
     }
+
+    //删除
+    @RequestMapping(value = "delete")
+    public JSONResult deleteUser(@RequestParam(name="id") int id){
+        userManagerService.deleteUser(id);
+        return new JSONResult().ok("success");
+    }
 }

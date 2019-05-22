@@ -55,4 +55,9 @@ public class UserManagerService {
         return userDao.updateUser(id,account,userName,Organization,position,employeeNumber,phone,lastLoginTime);
     }
 
+    //删除
+    public int deleteUser(int id){
+        return userDao.deleteUser(id);
+    }
+
 }

@@ -133,4 +133,8 @@ public interface UserDao {
                    @Param("lastLoginTime") String lastLoginTime
                    );
 
+    //根据id删除一条用户信息
+    @Delete("delete from userlist where id = #{id}")
+    int deleteUser(int id);
+
 }
