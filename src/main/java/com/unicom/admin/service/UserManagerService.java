@@ -47,13 +47,18 @@ public class UserManagerService {
         return userDao.getUserById(id);
     }
 
-    //由id编辑（修改）一条用户信息
-    public int updateUser(int id,String account,String userName,
-                          String Organization,int position,String employeeNumber,
-                          String phone,String lastLoginTime){
-        System.out.println(userName);
-        return userDao.updateUser(id,account,userName,Organization,position,employeeNumber,phone,lastLoginTime);
+    //由id编辑（修改）一条用户信息(post方式)
+    public int updateUser(User user){
+        return userDao.updateUser(user);
     }
+
+    //    //由id编辑（修改）一条用户信息(get方式)
+//    public int updateUser(int id,String account,String userName,
+//                          String Organization,int position,String employeeNumber,
+//                          String phone,String lastLoginTime){
+//        System.out.println(userName);
+//        return userDao.updateUser(id,account,userName,Organization,position,employeeNumber,phone,lastLoginTime);
+//    }
 
     //删除
     public int deleteUser(int id){
