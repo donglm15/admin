@@ -20,7 +20,7 @@ public class MarketService {
         return marketDao.getAllMarket();
     }
     //后端分页
-    public List<Market> getMarketByCon(String title, int importance, String marketType, String sort){
+    public List<Market> getMarketByCon(String title, String importance, String marketType, String sort){
         return marketDao.getMarketByCondition(title,importance,marketType,sort);
     }
 }
