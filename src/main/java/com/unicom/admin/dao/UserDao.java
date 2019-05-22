@@ -87,4 +87,26 @@ public interface UserDao {
             @Param("endDateTime") String endDateTime, //最后登录时间(截止)
             @Param("order") String order  //排序
     );
+
+    //新增用户数据（get方式）
+    @Insert("insert into userlist " +
+            "(account,userName,Organization,position,employeeNumber,phone,lastLoginTime) values" +
+            "(#{account},#{userName},#{Organization},#{position},#{employeeNumber},#{phone},#{lastLoginTime})")
+    int save(
+            @Param("account") String account,
+            @Param("userName") String userName,
+            @Param("Organization") String Organization,
+            @Param("position") int position,
+            @Param("employeeNumber") String employeeNumber,
+            @Param("phone") String phone,
+            @Param("lastLoginTime") String lastLoginTime
+    );
+
+    //新增用户数据(post方式)
+    @Options(useGeneratedKeys =  true, keyColumn = "id",keyProperty = "id") //useGeneratedKeys:主键是否为自增
+    @Insert("insert into userlist " +
+            "(account,userName,Organization,position,employeeNumber,phone,lastLoginTime) values" +
+            "(#{account},#{userName},#{Organization},#{position.id},#{employeeNumber},#{phone},#{lastLoginTime})")
+    int saveOne(User user);
+
 }

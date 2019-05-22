@@ -18,6 +18,7 @@ import java.util.List;
 public class UserManagerService {
     @Autowired //对象实例会自动注入
     private UserDao userDao;
+
     //查询所有用户信息列表（没有后端分页）
     public List<User> getAllUser(){
         return userDao.getAllUser();
@@ -26,6 +27,19 @@ public class UserManagerService {
     //后端分页查询
     public List<User> getUserByCondition(String account, String userName, String Organization,String position,String employeeNumber,String phone,String startDateTime,String endDateTime,String order){
         return userDao.getUserByCondition(account,userName,Organization,position,employeeNumber,phone,startDateTime,endDateTime,order);
+    }
+
+    //新增用户数据（get方式）
+    public int insert(String account, String userName,
+                      String Organization, int position, String employeeNumber,String phone,String lastLoginTime){
+        return userDao.save(account, userName, Organization, position, employeeNumber,phone,lastLoginTime);
+    }
+
+    //新增用户数据（post方式）
+    public int insert(User user){
+        userDao.saveOne(user);
+        System.out.println(user.getId());
+        return user.getId();
     }
 
 }
