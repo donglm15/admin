@@ -50,7 +50,7 @@
 
         <!-- 生成DAO文件-->
         <!-- XMLMAPPER生成xml映射文件, ANNOTATEDMAPPER生成的dao采用注解来写sql -->
-        <javaClientGenerator type="ANNOTATEDMAPPER" targetPackage="com.example.server.dao" targetProject="D:/learn/news/src/main/java">
+        <javaClientGenerator activityType="ANNOTATEDMAPPER" targetPackage="com.example.server.dao" targetProject="D:/learn/news/src/main/java">
             <!-- enableSubPackages:是否让schema作为包的后缀 -->
             <property name="enableSubPackages" value="false"/>
         </javaClientGenerator>
