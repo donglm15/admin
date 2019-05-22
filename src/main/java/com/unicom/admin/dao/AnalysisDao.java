@@ -22,6 +22,24 @@ public interface AnalysisDao {
     })
     List<Analysis> getAll();
 
+    @Select("<script>"+"select person from dailyreport where 1=1"+
+            "<if test='product!=null and product!=\"\"'>" +
+            " and product like '%${product}%'" +
+            "</if>"+
+            "<if test='region!=null and region!=\"\"'>" +
+            " and region=#{region}" +
+            "</if>"+
+            "<if test='startDate!=null and startDate!=\"\" and endDate!=\"\" and endDate!=null'>" +
+            " and date between #{startDate} and #{endDate}" +
+            "</if>"+
+            "</script>")
+    String getPerson(
+            @Param("startDate") String startDate,
+            @Param("endDate")String endDate,
+            @Param("region") String region,
+            @Param("product") String product
+    );
+
     @Select("<script>"+"select * from dailyreport where 1=1"+
             "<if test='product!=null and product!=\"\"'>" +
             " and product like '%${product}%'" +
@@ -62,15 +80,7 @@ public interface AnalysisDao {
         "#{person,jdbcType=INTEGER}, #{billing,jdbcType=FLOAT}, #{tratio,jdbcType=FLOAT}, ",
         "#{hratio,jdbcType=FLOAT})"
     })
-    int save(
-            @Param("product") String product,
-            @Param("date") String date,
-            @Param("region") int region,
-            @Param("person") int person,
-            @Param("billing") float billing,
-            @Param("tratio") float tratio,
-            @Param("hratio") float hratio
-    );
+    int save(Analysis analysis);
 
     @Update({
         "update dailyreport",
