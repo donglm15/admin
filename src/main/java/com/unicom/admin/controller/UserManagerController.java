@@ -85,4 +85,27 @@ public class UserManagerController {
         userManagerService.insert(user);
         return new JSONResult().ok("success");
     }
+
+    //查看用户详情
+    @RequestMapping(value = "getUser/{id}")
+    public JSONResult getUserById(@PathVariable(name="id") int id){
+        User user = userManagerService.getUserById(id);
+        return new JSONResult().ok(user);
+    }
+
+    //由id编辑（修改）一条用户信息
+    @RequestMapping(value = "update")
+    public JSONResult update(
+            @RequestParam(name="id") int id,
+            @RequestParam(name="account") String account,
+            @RequestParam(name="userName") String userName,
+            @RequestParam(name="Organization") String Organization,
+            @RequestParam(name="position") int position,
+            @RequestParam(name="employeeNumber") String employeeNumber,
+            @RequestParam(name="phone") String phone,
+            @RequestParam(name="lastLoginTime") String lastLoginTime
+            ){
+        userManagerService.updateUser(id,account,userName,Organization,position,employeeNumber,phone,lastLoginTime);
+        return new JSONResult().ok("success");
+    }
 }

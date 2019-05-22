@@ -109,4 +109,28 @@ public interface UserDao {
             "(#{account},#{userName},#{Organization},#{position.id},#{employeeNumber},#{phone},#{lastLoginTime})")
     int saveOne(User user);
 
+    //由id获取用户数据详情
+    @Select("select * from userlist where id = #{id}")
+    @Results({
+            @Result(column = "position",//数据库表列名
+                    property = "position",//User类中的属性名
+                    one = @One(select = "com.unicom.admin.dao.PositionTypeDao.getPositionTypeById",
+                            fetchType = FetchType.EAGER)
+            )
+    }) //返回结果值(每一个结果项)的映射关系(一个@Rlt对应一个数据列)
+    User getUserById(int id);
+
+    //由id修改一条用户信息
+    @Update("update userlist set account=#{account},userName=#{userName},Organization=#{Organization},position=#{position},employeeNumber=#{employeeNumber},phone=#{phone},lastLoginTime=#{lastLoginTime}" +
+            "where id=#{id}")
+    int updateUser(@Param("id") int id,
+                   @Param("account") String account,
+                   @Param("userName") String userName,
+                   @Param("Organization") String Organization,
+                   @Param("position") int position,
+                   @Param("employeeNumber") String employeeNumber,
+                   @Param("phone") String phone,
+                   @Param("lastLoginTime") String lastLoginTime
+                   );
+
 }
