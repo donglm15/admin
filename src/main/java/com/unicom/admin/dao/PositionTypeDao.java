@@ -21,11 +21,4 @@ public interface PositionTypeDao {
     })//数据库中表的字段名，与Java类中的属性名，之间的映射关系的更改
     position getPositionTypeById(int id);  //由id获取职位类别
 
-
-    @Insert({
-        "insert into positiontype (positionName)",
-        "values (#{positionName,jdbcType=VARCHAR})"
-    })
-    @SelectKey(statement="SELECT LAST_INSERT_ID()", keyProperty="id", before=false, resultType=int.class)
-    int insert(position record);
 }
