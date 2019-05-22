@@ -120,18 +120,24 @@ public interface UserDao {
     }) //返回结果值(每一个结果项)的映射关系(一个@Rlt对应一个数据列)
     User getUserById(int id);
 
-    //由id修改一条用户信息
-    @Update("update userlist set account=#{account},userName=#{userName},Organization=#{Organization},position=#{position},employeeNumber=#{employeeNumber},phone=#{phone},lastLoginTime=#{lastLoginTime}" +
-            "where id=#{id}")
-    int updateUser(@Param("id") int id,
-                   @Param("account") String account,
-                   @Param("userName") String userName,
-                   @Param("Organization") String Organization,
-                   @Param("position") int position,
-                   @Param("employeeNumber") String employeeNumber,
-                   @Param("phone") String phone,
-                   @Param("lastLoginTime") String lastLoginTime
-                   );
+    //由id修改一条用户信息（post方式）
+    @Update({"update userlist set account=#{account},userName=#{userName},Organization=#{Organization},position=#{position.id},employeeNumber=#{employeeNumber},phone=#{phone},lastLoginTime=#{lastLoginTime}" +
+            "where id=#{id}"})
+    //以实体类（post）形式传递参数
+    int updateUser(User user);
+
+//    //由id修改一条用户信息（get方式）
+//    @Update({"update userlist set account=#{account},userName=#{userName},Organization=#{Organization},position=#{position.id},employeeNumber=#{employeeNumber},phone=#{phone},lastLoginTime=#{lastLoginTime}" +
+//            "where id=#{id}"})
+//    int updateUser(@Param("id") int id,
+//                   @Param("account") String account,
+//                   @Param("userName") String userName,
+//                   @Param("Organization") String Organization,
+//                   @Param("position") int position,
+//                   @Param("employeeNumber") String employeeNumber,
+//                   @Param("phone") String phone,
+//                   @Param("lastLoginTime") String lastLoginTime
+//                   );
 
     //根据id删除一条用户信息
     @Delete("delete from userlist where id = #{id}")
