@@ -9,9 +9,9 @@ public class Meeting {
 
     private int peopleNum;
 
-    private int ifMoreid;
+    private int ifMore;
 
-    private int ifOpenid;
+    private int ifOpen;
 
     public int getId() {
         return id;
@@ -45,31 +45,43 @@ public class Meeting {
         this.peopleNum = peopleNum;
     }
 
-    public int getIfMoreid() {
-        return ifMoreid;
+    public int getIfMore() {
+        return ifMore;
     }
 
-    public void setIfMoreid(int ifMoreid) {
-        this.ifMoreid = ifMoreid;
+    public void setIfMore(int ifMore) {
+        this.ifMore = ifMore;
     }
 
-    public int getIfOpenid() {
-        return ifOpenid;
+    public int getIfOpen() {
+        return ifOpen;
     }
 
-    public void setIfOpenid(int ifOpenid) {
-        this.ifOpenid = ifOpenid;
+    public void setIfOpen(int ifOpen) {
+        this.ifOpen = ifOpen;
     }
 
     public Meeting() {
     }
 
-    public Meeting(int id, String meetingName, String meetingPosition, int peopleNum, int ifMoreid, int ifOpenid) {
+    public Meeting(int id, String meetingName, String meetingPosition, int peopleNum, int ifMore, int ifOpen) {
         this.id = id;
         this.meetingName = meetingName;
         this.meetingPosition = meetingPosition;
         this.peopleNum = peopleNum;
-        this.ifMoreid = ifMoreid;
-        this.ifOpenid = ifOpenid;
+        this.ifMore = ifMore;
+        this.ifOpen = ifOpen;
+    }
+
+    @Override
+    public String toString() {
+        return "Meeting{" +
+                "id=" + id +
+                ", meetingName='" + meetingName + '\'' +
+                ", meetingPosition='" + meetingPosition + '\'' +
+                ", peopleNum=" + peopleNum +
+                ", ifMore=" + ifMore +
+                ", ifOpen=" + ifOpen +
+                '}';
     }
 }
