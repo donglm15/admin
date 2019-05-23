@@ -1,6 +1,8 @@
 package com.unicom.admin.controller;
 
 import ch.qos.logback.core.net.SyslogOutputStream;
+import com.alibaba.fastjson.JSONArray;
+import com.alibaba.fastjson.JSONObject;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.unicom.admin.model.Analysis;
@@ -40,17 +42,16 @@ public class AnalysisController {
             Date date=new Date();
             date.setTime(dif);
             String lastDate=df.format(date);
-          String a=analysisService.getPerson(lastDate,lastDate,String.valueOf(analysis.getRegion()),analysis.getProduct());
-            DecimalFormat fnum  =   new  DecimalFormat("##0.00");
+            DecimalFormat fnum = new  DecimalFormat("##0.00");
             Random rand = new Random();
             float f = rand.nextInt(51)-20+rand.nextFloat();
             float t=Float.parseFloat(fnum.format(f));
             analysis.setTratio(t);
-          if(a!=null&&!a.equals("")){
-              double b=((float)analysis.getPerson()-Float.parseFloat(a))/Float.parseFloat(a);
-              float dd=Float.parseFloat(fnum.format(b));
-              float h=(analysis.getPerson()-Integer.parseInt(a))/Integer.parseInt(a);
-              analysis.setHratio(dd);
+            List<Analysis> a=analysisService.getByCon(lastDate,lastDate,String.valueOf(analysis.getRegion()),analysis.getProduct());
+            if(a.size()!=0&&!a.equals("")){
+                double b=((float)analysis.getPerson()-(float)(a.get(0).getPerson()))/(float)(a.get(0).getPerson())*100;
+                float dd=Float.parseFloat(fnum.format(b));
+                analysis.setHratio(dd);
           }else{
               float m = rand.nextInt(41)-20+rand.nextFloat();
               float n=Float.parseFloat(fnum.format(m));
@@ -76,12 +77,11 @@ public class AnalysisController {
             Date date=new Date();
             date.setTime(dif);
             String lastDate=df.format(date);
-            String a=analysisService.getPerson(lastDate,lastDate,String.valueOf(analysis.getRegion()),analysis.getProduct());
-            if(a!=null&&!a.equals("")){
-                double b=((float)analysis.getPerson()-Float.parseFloat(a))/Float.parseFloat(a);
+            List<Analysis> a=analysisService.getByCon(lastDate,lastDate,String.valueOf(analysis.getRegion()),analysis.getProduct());
+            if(a.size()!=0&&!a.equals("")){
+                double b=((float)analysis.getPerson()-(float)(a.get(0).getPerson()))/(float)(a.get(0).getPerson())*100;
                 DecimalFormat fnum  =   new  DecimalFormat("##0.00");
                 float dd=Float.parseFloat(fnum.format(b));
-                float h=(analysis.getPerson()-Integer.parseInt(a))/Integer.parseInt(a);
                 analysis.setHratio(dd);
             }
           analysisService.update(analysis);

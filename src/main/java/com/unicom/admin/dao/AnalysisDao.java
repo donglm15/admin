@@ -22,23 +22,6 @@ public interface AnalysisDao {
     })
     List<Analysis> getAll();
 
-    @Select("<script>"+"select person from dailyreport where 1=1"+
-            "<if test='product!=null and product!=\"\"'>" +
-            " and product like '%${product}%'" +
-            "</if>"+
-            "<if test='region!=null and region!=\"\"'>" +
-            " and region=#{region}" +
-            "</if>"+
-            "<if test='startDate!=null and startDate!=\"\" and endDate!=\"\" and endDate!=null'>" +
-            " and date between #{startDate} and #{endDate}" +
-            "</if>"+
-            "</script>")
-    String getPerson(
-            @Param("startDate") String startDate,
-            @Param("endDate")String endDate,
-            @Param("region") String region,
-            @Param("product") String product
-    );
 
     @Select("<script>"+"select * from dailyreport where 1=1"+
             "<if test='product!=null and product!=\"\"'>" +
