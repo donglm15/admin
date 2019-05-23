@@ -22,6 +22,7 @@ public class AnnouncementMeetingStatus {
     }
 
     public AnnouncementMeetingStatus() {
+
     }
 
     public AnnouncementMeetingStatus(int id, String meetingStatus) {

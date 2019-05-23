@@ -14,6 +14,11 @@ public class MeetingService {
     //显示全部数据
     public List<Meeting> getAllMeeting(){return meetingDao.getAllMeeting();}
 
+    //会议室地点数据封装
+    public List<String> getMeetingPlace(){
+        return meetingDao.getMeetingPlace();
+    }
+
 
     //后端分页查询
     public List<Meeting> getMeetingByCon(String meetingName,String peopleNum,String order){

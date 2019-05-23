@@ -33,6 +33,11 @@ public interface MeetingDao {
             @Param("peopleNum") String peopleNum,
             @Param("order") String order
     );
+
+    //会议室地点数据封装
+    @Select("select distinct meetingPosition  from meeting")
+    List<String> getMeetingPlace();
+
     //删除
     @Delete("delete from meeting where id=#{id}")
     int deleteMeetig(int id);
