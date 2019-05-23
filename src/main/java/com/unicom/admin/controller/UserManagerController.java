@@ -6,6 +6,7 @@ import com.unicom.admin.model.JSONResult;
 import com.unicom.admin.model.User;
 import com.unicom.admin.model.position;
 import com.unicom.admin.service.UserManagerService;
+import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
@@ -25,6 +26,7 @@ import java.util.List;
 @RestController
 //说明控制器响应的是前端哪个请求的路径
 @RequestMapping(value = "userManager")
+@Api(tags = "联通之家-用户管理模块")
 public class UserManagerController {
     @Autowired
     private UserManagerService userManagerService;

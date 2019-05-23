@@ -26,8 +26,8 @@ public class Swagger2Config {
 
     public ApiInfo apiInfo() {
         return new ApiInfoBuilder()
-                .title("springboot 结合 swagger2 构建 Restful API")
-                .description("这是一个 swagger2 小型 demo")
+                .title("联通之家管理系统后端接口文档")
+                .description("技术成就梦想")
                 .termsOfServiceUrl("localhost:8080")
                 .version("0.0.1")
                 .build();
