@@ -1,6 +1,8 @@
 package com.unicom.admin.dao;
 
 import com.unicom.admin.model.Notice;
+import com.unicom.admin.model.NoticeStatistics;
+import netscape.javascript.JSObject;
 import org.apache.ibatis.annotations.*;
 import org.springframework.stereotype.Repository;
 
@@ -63,4 +65,9 @@ public interface NoticeDao {
     @Update("update notice set noticeStatus=#{noticeStatus} where noticeId=#{noticeId}")
     int updateStatus(@Param("noticeId") int noticeId,
                      @Param("noticeStatus") String noticeStatus);
+
+    @Select("SELECT ${noticeFirst} as noticeFirst,${noticeSecond} as noticeSecond,COUNT(*) as count FROM notice GROUP BY ${noticeFirst},${noticeSecond}")
+    List<NoticeStatistics> noticeStatistics(
+            @Param("noticeFirst") String noticeFirst,
+            @Param("noticeSecond") String noticeSecond);
 }

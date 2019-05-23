@@ -2,6 +2,8 @@ package com.unicom.admin.service;
 
 import com.unicom.admin.dao.NoticeDao;
 import com.unicom.admin.model.Notice;
+import com.unicom.admin.model.NoticeStatistics;
+import netscape.javascript.JSObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -39,5 +41,9 @@ public class NoticeService {
 
     public int updateStatus(int noticeId, String noticeStatus){
         return noticedao.updateStatus(noticeId, noticeStatus);
+    }
+
+    public List<NoticeStatistics> noticeStatistics(String noticeFirst,String noticeSecond){
+        return noticedao.noticeStatistics(noticeFirst,noticeSecond);
     }
 }
