@@ -60,7 +60,7 @@ public class MemberController {
             @RequestParam(value = "limit",defaultValue = "10") Integer limit,
             @RequestParam(name = "title",defaultValue = "") String title,
             @RequestParam(name = "type",defaultValue = "") String type,
-            @RequestParam(name = "sort",defaultValue = "+id") String sort
+            @RequestParam(name = "sort",defaultValue = "-id") String sort
     ){
         PageHelper.startPage(page,limit);
         List<Member> list=memberService.getMemeberByCon(title,type,sort);
