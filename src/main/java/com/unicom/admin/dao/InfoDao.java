@@ -27,6 +27,12 @@ public interface InfoDao {
     })
     List<Info> getAllInfo();
 
+    /**
+     * 获取特定资讯列表
+     * @param title
+     * @param type
+     * @return
+     */
     @Select("<script>" +
                 "select * from info where 1=1" +
             "<if test='title!=null and title!=\"\"'>" +
@@ -35,6 +41,7 @@ public interface InfoDao {
             "<if test='type!=null and type!=\"\"'>" +
             "and infoTypeId = #{type}" +
             "</if>" +
+            "order by id desc" +
             "</script>")
     @Results({
             @Result(
@@ -49,59 +56,98 @@ public interface InfoDao {
             @Param("type") String type
     );
 
-//    @DeleteProvider(type=InfoSqlProvider.class, method="deleteByExample")
-//    int deleteByExample(InfoExample example);
-//
-//    @Insert({
-//        "insert into info (imgUrl, title, ",
-//        "date, infoTypeId, read, ",
-//        "like, favorite, ",
-//        "content)",
-//        "values (#{imgUrl,jdbcType=VARCHAR}, #{title,jdbcType=VARCHAR}, ",
-//        "#{date,jdbcType=DATE}, #{infoTypeId,jdbcType=TINYINT}, #{read,jdbcType=SMALLINT}, ",
-//        "#{like,jdbcType=SMALLINT}, #{favorite,jdbcType=SMALLINT}, ",
-//        "#{content,jdbcType=LONGVARCHAR})"
-//    })
-//    @SelectKey(statement="SELECT LAST_INSERT_ID()", keyProperty="id", before=false, resultType=int.class)
-//    int insert(Info record);
-//
-//    @InsertProvider(type=InfoSqlProvider.class, method="insertSelective")
-//    @SelectKey(statement="SELECT LAST_INSERT_ID()", keyProperty="id", before=false, resultType=int.class)
-//    int insertSelective(Info record);
-//
-//    @SelectProvider(type=InfoSqlProvider.class, method="selectByExampleWithBLOBs")
-//    @Results({
-//        @Result(column="id", property="id", jdbcType=JdbcType.TINYINT),
-//        @Result(column="imgUrl", property="imgUrl", jdbcType=JdbcType.VARCHAR),
-//        @Result(column="title", property="title", jdbcType=JdbcType.VARCHAR),
-//        @Result(column="date", property="date", jdbcType=JdbcType.DATE),
-//        @Result(column="infoTypeId", property="infoTypeId", jdbcType=JdbcType.TINYINT),
-//        @Result(column="read", property="read", jdbcType=JdbcType.SMALLINT),
-//        @Result(column="like", property="like", jdbcType=JdbcType.SMALLINT),
-//        @Result(column="favorite", property="favorite", jdbcType=JdbcType.SMALLINT),
-//        @Result(column="content", property="content", jdbcType=JdbcType.LONGVARCHAR)
-//    })
-//    List<Info> selectByExampleWithBLOBs(InfoExample example);
-//
-//    @SelectProvider(type=InfoSqlProvider.class, method="selectByExample")
-//    @Results({
-//        @Result(column="id", property="id", jdbcType=JdbcType.TINYINT),
-//        @Result(column="imgUrl", property="imgUrl", jdbcType=JdbcType.VARCHAR),
-//        @Result(column="title", property="title", jdbcType=JdbcType.VARCHAR),
-//        @Result(column="date", property="date", jdbcType=JdbcType.DATE),
-//        @Result(column="infoTypeId", property="infoTypeId", jdbcType=JdbcType.TINYINT),
-//        @Result(column="read", property="read", jdbcType=JdbcType.SMALLINT),
-//        @Result(column="like", property="like", jdbcType=JdbcType.SMALLINT),
-//        @Result(column="favorite", property="favorite", jdbcType=JdbcType.SMALLINT)
-//    })
-//    List<Info> selectByExample(InfoExample example);
-//
-//    @UpdateProvider(type=InfoSqlProvider.class, method="updateByExampleSelective")
-//    int updateByExampleSelective(@Param("record") Info record, @Param("example") InfoExample example);
-//
-//    @UpdateProvider(type=InfoSqlProvider.class, method="updateByExampleWithBLOBs")
-//    int updateByExampleWithBLOBs(@Param("record") Info record, @Param("example") InfoExample example);
-//
-//    @UpdateProvider(type=InfoSqlProvider.class, method="updateByExample")
-//    int updateByExample(@Param("record") Info record, @Param("example") InfoExample example);
+    /**
+     * 编辑资讯详情时更新数据库
+     * @param id
+     * @param title
+     * @param content
+     * @param date
+     * @param infoTypeId
+     * @return
+     */
+    @Update("update info set title = #{title} , " +
+            "content = #{content} , date = #{date} " +
+            ", infoTypeId = #{infoTypeId} " +
+            "where id = #{id}")
+    int updateInfoByEdit(
+            @Param("id") int id,
+            @Param("title") String title,
+            @Param("content") String content,
+            @Param("date") String date,
+            @Param("infoTypeId") int infoTypeId
+    );
+
+    /**
+     * 根据id删除一条资讯
+     * @param id
+     * @return
+     */
+    @Delete("delete from info where id=#{id}")
+    int deleteInfoByd(int id);
+
+    /**
+     * 根据id获取一条资讯
+     * @param id
+     * @return
+     */
+    @Select("select * from info where id=#{id}")
+    @Results({
+            @Result(column = "infoTypeId",
+                    property = "infoType",
+                    one = @One(select = "com.unicom.admin.dao.InfoTypeDao.getInfoTypeById",
+                                fetchType = FetchType.EAGER)
+            )
+    })
+    Info getInfoById(int id);
+
+    /**
+     * 根据id将该资讯浏览量加一
+     * @param id
+     * @return
+     */
+    @Update("update info set `read` = `read`+1 " +
+            "where id = #{id}")
+    int updateRead(
+            @Param("id") int id
+    );
+
+    /**
+     * 点赞数、收藏数的增减
+     * @param id
+     * @param likeFlag
+     * @param flag
+     * @return
+     */
+    @Update("<script>" +
+            "update info set " +
+            "<if test='likeFlag == true'>" +
+            "`like` = `like`" +
+            "</if>" +
+            "<if test='likeFlag == false'>" +
+            "favorite = favorite" +
+            "</if>" +
+            "<if test='flag == true'>" +
+            "+" +
+            "</if>" +
+            "<if test='flag == false'>" +
+            "-" +
+            "</if>" +
+            "1 where id = #{id}" +
+            "</script>")
+    int updateLikeFavo(
+            @Param("id") int id,
+            @Param("likeFlag") boolean likeFlag,
+            @Param("flag") boolean flag
+    );
+
+    /**
+     * 新增一条资讯（post）
+     * @param info
+     * @return
+     */
+    @Options(useGeneratedKeys = true,keyColumn = "id",keyProperty = "id")
+    @Insert("insert into info" +
+            "(date,infoTypeId,title,content,`read`,imgUrl,`like`,favorite) values" +
+            "(#{date},#{infoType.id},#{title},#{content},#{read},#{imgUrl},#{like},#{favorite})")
+    int insert(Info info);
 }
