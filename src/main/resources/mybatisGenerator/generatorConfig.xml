@@ -8,7 +8,7 @@
     <properties resource="mybatisGenerator/generatorConfig.properties"/>
 
     <!-- 数据库驱动:选择你的本地硬盘上面的数据库驱动包-->
-    <classPathEntry location="D:/work/apache-maven_repository/mysql/mysql-connector-java/5.1.45/mysql-connector-java-5.1.45.jar"/>
+    <classPathEntry location="C:/maven/work/mysql/mysql-connector-java/8.0.15/mysql-connector-java-8.0.15.jar"/>
 
     <context id="MysqlContext"  targetRuntime="MyBatis3">
         <!-- 注释 -->
@@ -58,7 +58,7 @@
 
         <!-- 生成DAO文件-->
         <!-- XMLMAPPER生成xml映射文件, ANNOTATEDMAPPER生成的dao采用注解来写sql -->
-        <javaClientGenerator type="${dao_type}"
+        <javaClientGenerator activityType="${dao_type}"
                              targetPackage="${daos_package}"
                              targetProject="${daos_dir}">
             <!-- enableSubPackages:是否让schema作为包的后缀 -->
@@ -113,6 +113,44 @@
             <!--<oneToOne mappingTable="newstype" column="id" joinColumn="newstypeid"></oneToOne>-->
         </table>
 
+        <table tableName="activitystatus" domainObjectName="ActivityType" mapperName="ActivityTypeDao"
+               enableCountByExample="false"
+               enableUpdateByExample="false"
+               enableDeleteByExample="false"
+               enableSelectByExample="false"
+               selectByExampleQueryId="false">
+            <!--开启驼峰命名法-->
+            <property name="useActualColumnNames" value="true" />
+            <!-- 忽略列，不生成bean 字段 -->
+            <!--<ignoreColumn column="id" />-->
+            <!-- 数据库表主键 -->
+            <generatedKey column="id" sqlStatement="Mysql" identity="true" />
+            <!-- 指定列的java数据类型 -->
+            <columnOverride column="id" jdbcType="TINYINT" javaType="int"/>
+            <columnOverride column="activityType" property="activityType"></columnOverride>
+        </table>
+
+
+        <table tableName="activity" domainObjectName="Activity" mapperName="ActivityDao"
+               enableCountByExample="false"
+               enableUpdateByExample="true"
+               enableDeleteByExample="true"
+               enableSelectByExample="true"
+               selectByExampleQueryId="true">
+            <!--开启驼峰命名法-->
+            <property name="useActualColumnNames" value="true" />
+            <!-- 忽略列，不生成bean 字段 -->
+            <!--<ignoreColumn column="id" />-->
+            <!-- 数据库表主键 -->
+            <generatedKey column="id" sqlStatement="Mysql" identity="true" />
+            <!-- 指定列的java数据类型 -->
+            <columnOverride column="id" jdbcType="TINYINT" javaType="int"/>/;
+            <columnOverride column="activityStatusId" javaType="int"/>
+            <columnOverride column="people" javaType="int"/>
+            <columnOverride column="uid" javaType="int"/>
+
+
+        </table>
         <!-- 通配符情况 -->
         <!--%代表全部表-->
         <!--<table tableName="%" mapperName="{0}Dao">-->
