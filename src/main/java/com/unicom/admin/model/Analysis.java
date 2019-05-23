@@ -105,4 +105,5 @@ public class Analysis {
         this.tratio = tratio;
         this.hratio = hratio;
     }
+
 }
