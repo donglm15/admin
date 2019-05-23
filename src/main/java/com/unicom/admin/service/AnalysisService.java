@@ -17,8 +17,8 @@ public class AnalysisService {
         return analysisDao.getAll();
     }
 
-    public int insert(String product,String date,int region,int person,float billing,float tratio,float hratio){
-        return analysisDao.save(product,date,region,person,billing,tratio,hratio);
+    public int insert(Analysis analysis){
+        return analysisDao.save(analysis);
     }
 
     public int update(Analysis analysis){
@@ -33,5 +33,11 @@ public class AnalysisService {
             String startDate,String endDate,String region,String product
     ){
         return analysisDao.getByCondition(startDate,endDate,region,product);
+    }
+
+    public String getPerson(
+            String startDate,String endDate,String region,String product
+    ){
+        return analysisDao.getPerson(startDate,endDate,region,product);
     }
 }
