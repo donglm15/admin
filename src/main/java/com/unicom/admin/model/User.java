@@ -6,6 +6,10 @@ package com.unicom.admin.model;
 * time:2019.05.21 14:41
 * */
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import java.util.Date;
 
 public class User {
@@ -15,6 +19,7 @@ public class User {
 
     private String userName;
 
+    @JsonProperty("Organization")
     private String Organization;
 
     private position position;
@@ -22,7 +27,8 @@ public class User {
     private String employeeNumber;
 
     private String phone;
-
+    //格式化
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss",locale = "zh",timezone = "GMT+8")
     private Date lastLoginTime;
 
     private String profileAddress;
@@ -57,6 +63,7 @@ public class User {
         this.userName = userName == null ? null : userName.trim();
     }
 
+    @JsonProperty("Organization")
     public String getOrganization() {
         return Organization;
     }
