@@ -88,23 +88,5 @@ public interface PageProduceDao {
             @Param("order") String order
     );
 
-
-
-//      PageProduce
-//      pageProduce
-    @Insert({
-        "insert into pageproduce (produce_id, produce_datatime, ",
-        "produce_type, produce_name, ",
-        "produce_team_name, produce_importance, ",
-        "produce_details)",
-        "values (#{produce_id,jdbcType=TINYINT}, #{produce_datatime,jdbcType=TIMESTAMP}, ",
-        "#{produce_type,jdbcType=CHAR}, #{produce_name,jdbcType=CHAR}, ",
-        "#{produce_team_name,jdbcType=CHAR}, #{produce_importance,jdbcType=TINYINT}, ",
-        "#{produce_details,jdbcType=VARCHAR})"
-    })
-    int insert(PageProduce record);
-
-    @InsertProvider(type=PageProduceSqlProvider.class, method="insertSelective")
-    int insertSelective(PageProduce record);
 }
 
