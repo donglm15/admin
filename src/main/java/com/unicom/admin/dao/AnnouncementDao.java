@@ -29,7 +29,7 @@ public interface AnnouncementDao {
             "</if>" +
 
             "<if test='meetingStatus!=null and meetingStatus!=\"\"'>" +
-            " and announcementMeetingStatus = #{meetingStatus}" +
+            " and meetingStatusid = #{meetingStatus}" +
             "</if>" +
 
             "<if test='meetingPosition!=null and meetingPosition!=\"\"'>" +
@@ -68,24 +68,32 @@ public interface AnnouncementDao {
             @Param("startDateTime") String startDateTime,
             @Param("endDateTime") String endDateTime
     );
-//    @Insert({
-//        "insert into announcement (meetingID, meetingTheme, ",
-//        "department, meetingDate, ",
-//        "meetingStatusid, meetingPosition, ",
-//        "delayDate, meetingType, ",
-//        "user, meetingPeople, ",
-//        "dateLong, Presenter, ",
-//        "Data, meetingContent, ",
-//        "msg)",
-//        "values (#{meetingID,jdbcType=VARCHAR}, #{meetingTheme,jdbcType=VARCHAR}, ",
-//        "#{department,jdbcType=VARCHAR}, #{meetingDate,jdbcType=TIMESTAMP}, ",
-//        "#{meetingStatusid,jdbcType=TINYINT}, #{meetingPosition,jdbcType=VARCHAR}, ",
-//        "#{delayDate,jdbcType=TIMESTAMP}, #{meetingType,jdbcType=VARCHAR}, ",
-//        "#{user,jdbcType=VARCHAR}, #{meetingPeople,jdbcType=VARCHAR}, ",
-//        "#{dateLong,jdbcType=TINYINT}, #{presenter,jdbcType=VARCHAR}, ",
-//        "#{data,jdbcType=VARCHAR}, #{meetingContent,jdbcType=VARCHAR}, ",
-//        "#{msg,jdbcType=VARCHAR})"
-//    })
+
+    //删除
+    @Delete("delete from announcement where id=#{id}")
+    int deleteAnnouncement(int id);
+    //新增
+    @Options(useGeneratedKeys = true,keyColumn = "id",keyProperty = "id")
+    @Insert({
+            "insert into announcement (meetingID, meetingTheme, ",
+            "department, meetingDate, ",
+            "meetingStatusid, meetingPosition, ",
+            "meetingType, ",
+            "user, meetingPeople, ",
+            "dateLong, Presenter, ",
+            "Data, meetingContent, ",
+            "msg)",
+            "values (#{meetingID,jdbcType=VARCHAR}, #{meetingTheme,jdbcType=VARCHAR}, ",
+            "#{department,jdbcType=VARCHAR}, #{meetingDate,jdbcType=TIMESTAMP}, ",
+            "#{meetingStatusid,jdbcType=TINYINT}, #{meetingPosition,jdbcType=VARCHAR}, ",
+            "#{meetingType,jdbcType=VARCHAR}, ",
+            "#{user,jdbcType=VARCHAR}, #{meetingPeople,jdbcType=VARCHAR}, ",
+            "#{dateLong,jdbcType=TINYINT}, #{presenter,jdbcType=VARCHAR}, ",
+            "#{data,jdbcType=VARCHAR}, #{meetingContent,jdbcType=VARCHAR}, ",
+            "#{msg,jdbcType=VARCHAR})"
+    })
+    int saveOne(Announcement announcement);
+
 
 //    @SelectKey(statement="SELECT LAST_INSERT_ID()", keyProperty="id", before=false, resultType=int.class)
 //    int insert(Announcement record);
