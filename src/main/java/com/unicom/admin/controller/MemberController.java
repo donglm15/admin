@@ -6,7 +6,6 @@ import com.unicom.admin.model.JSONResult;
 import com.unicom.admin.model.Member;
 import com.unicom.admin.service.MemberService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.*;
 
 //import java.lang.reflect.Member;
@@ -83,6 +82,15 @@ public class MemberController {
     @PostMapping(value = "update")
     public JSONResult updateMember(@RequestBody Member member){
         memberService.updateMember(member);
+        return new JSONResult().ok("success");
+    }
+
+    @RequestMapping(value = "update")
+    public JSONResult update(
+            @RequestParam(name = "id") int id,
+            @RequestParam(name = "typename") String typename
+    ){
+        memberService.update(id,typename);
         return new JSONResult().ok("success");
     }
 

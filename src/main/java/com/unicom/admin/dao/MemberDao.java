@@ -86,7 +86,17 @@ public interface MemberDao {
             "title=#{title},content=#{content},`readings`=#{readings} where id=#{id}")
     int updateMember(Member member);
 
-    @Insert({"insert into member (date,id,title,content,author,readings)",
-            "(#{date},#{id},#{title},#{content},#{author},#{readings})"})
+    @Update("update membertype set typename=#{typename}"+"where id=#{id}")
+    int updateMemberType(
+            @Param("id") int id,
+            @Param("typename") String typename
+    );
+
+    @Insert({"insert into member (date,id,title,membertypeid,content,author,readings)",
+            "(#{date},#{id},#{title},#{membertypeid},#{content},#{author},#{readings})"})
     int insertMember(Member member);
+
+    @Insert("insert into membertype (typename) value (#{typename})")
+    int insertMemberType(String typename);
+
 }
