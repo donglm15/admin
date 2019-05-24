@@ -99,6 +99,11 @@ public class NoticeController {
     }
 
     @GetMapping(value = "noticeStatistics")
+    @ApiOperation(value = "根据接收参数进行统计")
+    @ApiImplicitParams({
+            @ApiImplicitParam(name = "noticeFirst", value = "第一个参数", required = true,dataType = "String"),
+            @ApiImplicitParam(name = "noticeSecond", value = "第二个参数", required = true,dataType = "string"),
+    })
     public JSONResult noticeStatistics(@RequestParam(name = "noticeFirst") String noticeFirst,@RequestParam(name = "noticeSecond") String noticeSecond){
         List<NoticeStatistics> list=noticeService.noticeStatistics(noticeFirst,noticeSecond);
         System.out.println(list);
