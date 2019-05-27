@@ -18,6 +18,10 @@ public class InfoService {
         return infoDao.getAllInfo();
     }
 
+    public List<Info> getTopInfo(){
+        return infoDao.getTopInfo();
+    }
+
     public List<Info> getInfoByCon(String title,String type){
         return infoDao.getInfoByCondition(title,type);
     }

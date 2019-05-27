@@ -95,7 +95,7 @@ public class Member {
     public Member() {
     }
 
-    public Member(int id, Date date, String title, String content, String author, String readings , MemberType memberType) {
+    public Member(int id, Date date, String title, String content, String author, String readings , MemberType memberType,String membertypeid) {
         this.id = id;
         this.date = date;
         this.title = title;
@@ -103,5 +103,6 @@ public class Member {
         this.author = author;
         this.readings = readings;
         this.memberType = memberType;
+        this.membertypeid=membertypeid;
     }
 }

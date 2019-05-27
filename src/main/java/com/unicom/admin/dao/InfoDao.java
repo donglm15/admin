@@ -28,6 +28,20 @@ public interface InfoDao {
     List<Info> getAllInfo();
 
     /**
+     * 获取浏览量前五的资讯
+     * @return
+     */
+    @Select("select * from info order by `read` desc limit 5")
+    @Results({
+            @Result(column = "infotypeid",
+                    property = "infoType",
+                    one = @One(select = "com.unicom.admin.dao.InfoTypeDao.getInfoTypeById",
+                            fetchType = FetchType.EAGER)
+            )
+    })
+    List<Info> getTopInfo();
+
+    /**
      * 获取特定资讯列表
      * @param title
      * @param type
