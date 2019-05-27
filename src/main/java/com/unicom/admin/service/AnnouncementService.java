@@ -21,4 +21,14 @@ public class AnnouncementService {
                 meetingTheme,startDateTime,endDateTime);
     }
 
+    //删除
+    public int delete(int id){
+        return announcementDao.deleteAnnouncement(id);
+    }
+    //新增
+    public int insertOne(Announcement announcement){
+        announcementDao.saveOne(announcement);
+//        System.out.println(announcement.getId());
+        return announcement.getId();
+    }
 }

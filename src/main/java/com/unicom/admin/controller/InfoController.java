@@ -20,9 +20,15 @@ public class InfoController {
     @Autowired
     private InfoService infoService;
 
-    @RequestMapping(value = "oldlist")
+    @RequestMapping(value = "allInfo")
     public JSONResult getAllInfo(){
         List<Info> list = infoService.getAllInfo();
+        return new JSONResult().ok(list);
+    }
+
+    @RequestMapping(value = "topInfo")
+    public JSONResult getTopInfo(){
+        List<Info> list = infoService.getTopInfo();
         return new JSONResult().ok(list);
     }
 

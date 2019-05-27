@@ -6,6 +6,9 @@ import com.github.pagehelper.PageInfo;
 import com.unicom.admin.model.Analysis;
 import com.unicom.admin.model.JSONResult;
 import com.unicom.admin.service.AnalysisService;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiImplicitParam;
+import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -19,18 +22,21 @@ import java.util.Random;
 
 @RestController
 @RequestMapping(value = "analysis")
+@Api(tags = "联通之家-经营分析模块")
 public class AnalysisController {
     @Autowired
     private AnalysisService analysisService;
 
 
     @RequestMapping(value = "list")
+    @ApiOperation(value = "获取产品经营情况")
     public JSONResult getAllNews(){
         List<Analysis> list= analysisService.getAll();
        return new JSONResult().ok(list);
     }
 
-
+    @ApiOperation(value = "插入经营数据")
+    @ApiImplicitParam(name = "analysis", value = "经营数据", required = true, dataType = "Analysis")
     @PostMapping(value = "insert")
     public JSONResult insert(@RequestBody Analysis analysis){
         try {
@@ -66,6 +72,8 @@ public class AnalysisController {
 
     }
 
+    @ApiOperation(value = "更新经营数据")
+    @ApiImplicitParam(name = "analysis", value = "经营数据", required = true, dataType = "Analysis")
     @PostMapping(value = "update")
     public JSONResult update(@RequestBody Analysis analysis){
         try {
@@ -91,8 +99,10 @@ public class AnalysisController {
         return result;
     }
 
+    @ApiOperation(value = "根据id删除经营数据")
+    @ApiImplicitParam(name = "id",value = "经营数据id",required = true,dataType = "int")
     @RequestMapping(value = "delete")
-    public JSONResult delete( @RequestParam(value = "id") int id){
+    public JSONResult delete( @RequestParam(name = "id") int id){
         analysisService.delete(id);
         JSONResult result=new JSONResult().ok("success");
         return result;
@@ -100,6 +110,7 @@ public class AnalysisController {
 
 
     @GetMapping(value = "select")
+    @ApiOperation(value = "后台分页获取产品经营情况")
     public JSONResult select(
             @RequestParam(value = "page",defaultValue = "1") int page,
             @RequestParam(value = "limit",defaultValue = "20") int limit,

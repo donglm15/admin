@@ -7,10 +7,7 @@ import com.unicom.admin.model.JSONResult;
 import com.unicom.admin.service.AnnouncementService;
 import com.unicom.admin.service.MeetingService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -57,5 +54,21 @@ public class AnnouncementController {
     @RequestMapping(value = "getMeetingPlace")
     public JSONResult getMeetingPlace(){
         return new JSONResult().ok(meetingService.getMeetingPlace());
+    }
+
+
+    //删除
+    @RequestMapping(value = "delete")
+    public JSONResult delete(@RequestParam(name ="id") int id){
+        announcementService.delete(id);
+        return new JSONResult().ok("success");
+    }
+
+    //新增
+    @PostMapping(value = "saveOne")
+    public JSONResult saveOne(@RequestBody Announcement announcement){
+//        System.out.println(announcement);
+        announcementService.insertOne(announcement);
+        return new JSONResult().ok("success");
     }
 }
