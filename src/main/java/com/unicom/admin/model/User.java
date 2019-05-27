@@ -28,7 +28,7 @@ public class User {
 
     private String phone;
     //格式化
-    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss",locale = "zh",timezone = "GMT+8")
+//    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss",locale = "zh",timezone = "GMT+8")
     private Date lastLoginTime;
 
     private String profileAddress;
