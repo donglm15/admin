@@ -26,6 +26,12 @@ public class InfoController {
         return new JSONResult().ok(list);
     }
 
+    @RequestMapping(value = "topInfo")
+    public JSONResult getTopInfo(){
+        List<Info> list = infoService.getTopInfo();
+        return new JSONResult().ok(list);
+    }
+
     @RequestMapping(value = "list")
     public JSONResult getInfoByCon(
             @RequestParam(name = "page",defaultValue = "1") int page,
