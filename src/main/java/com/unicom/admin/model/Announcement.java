@@ -1,5 +1,7 @@
 package com.unicom.admin.model;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 import java.util.Date;
 
 public class Announcement {
@@ -10,6 +12,8 @@ public class Announcement {
     private String meetingTheme;
 
     private String department;
+    //格式化
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm",locale = "zh",timezone = "GMT+8")
 
     private Date meetingDate;
 
