@@ -1,5 +1,7 @@
 package com.unicom.admin.model;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 import java.util.Date;
 
 public class Announcement {
@@ -10,10 +12,22 @@ public class Announcement {
     private String meetingTheme;
 
     private String department;
+    //格式化
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm",locale = "zh",timezone = "GMT+8")
 
     private Date meetingDate;
 
     private int meetingStatusid;
+
+    private AnnouncementMeetingStatus announcementMeetingStatus;
+
+    public AnnouncementMeetingStatus getAnnouncementMeetingStatus() {
+        return announcementMeetingStatus;
+    }
+
+    public void setAnnouncementMeetingStatus(AnnouncementMeetingStatus announcementMeetingStatus) {
+        this.announcementMeetingStatus = announcementMeetingStatus;
+    }
 
     private String meetingPosition;
 
@@ -166,13 +180,14 @@ public class Announcement {
     public Announcement() {
     }
 
-    public Announcement(int id, String meetingID, String meetingTheme, String department, Date meetingDate, int meetingStatusid, String meetingPosition, Date delayDate, String meetingType, String user, String meetingPeople, int dateLong, String presenter, String data, String meetingContent, String msg) {
+    public Announcement(int id, String meetingID, String meetingTheme, String department, Date meetingDate, int meetingStatusid, AnnouncementMeetingStatus announcementMeetingStatus, String meetingPosition, Date delayDate, String meetingType, String user, String meetingPeople, int dateLong, String presenter, String data, String meetingContent, String msg) {
         this.id = id;
         this.meetingID = meetingID;
         this.meetingTheme = meetingTheme;
         this.department = department;
         this.meetingDate = meetingDate;
         this.meetingStatusid = meetingStatusid;
+        this.announcementMeetingStatus = announcementMeetingStatus;
         this.meetingPosition = meetingPosition;
         this.delayDate = delayDate;
         this.meetingType = meetingType;
@@ -184,5 +199,4 @@ public class Announcement {
         this.meetingContent = meetingContent;
         this.msg = msg;
     }
-
 }

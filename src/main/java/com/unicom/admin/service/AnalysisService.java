@@ -35,9 +35,4 @@ public class AnalysisService {
         return analysisDao.getByCondition(startDate,endDate,region,product);
     }
 
-    public String getPerson(
-            String startDate,String endDate,String region,String product
-    ){
-        return analysisDao.getPerson(startDate,endDate,region,product);
-    }
 }
