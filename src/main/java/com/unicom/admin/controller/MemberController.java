@@ -86,6 +86,15 @@ public class MemberController {
         return new JSONResult().ok("success");
     }
 
+    @RequestMapping(value = "updatetype")
+    public JSONResult update(
+            @RequestParam(name = "id") int id,
+            @RequestParam(name = "typename") String typename
+    ){
+        memberService.update(id,typename);
+        return new JSONResult().ok("success");
+    }
+
     @PostMapping(value = "insert")
     public JSONResult insertMemebr(@RequestBody Member member){
         memberService.insert(member);

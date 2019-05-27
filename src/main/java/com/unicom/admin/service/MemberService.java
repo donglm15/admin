@@ -59,7 +59,13 @@ public class MemberService {
         return memberDao.updateMember(member);
     }
 
+    public int update(int id,String typename){
+        return memberDao.updateMemberType(id,typename);
+    }
+
     public int insertMember(Member member){
         return memberDao.insertMember(member);
+
+
     }
 }
