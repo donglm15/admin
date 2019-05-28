@@ -10,7 +10,7 @@ import java.util.List;
 @Repository
 @Mapper
 public interface AnnouncementDao {
-    //前端列表
+    //前端列表1
     @Select("select * from announcement")
     @Results({
             @Result(column = "meetingStatusid",
