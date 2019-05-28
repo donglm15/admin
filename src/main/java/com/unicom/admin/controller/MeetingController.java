@@ -24,6 +24,7 @@ public class MeetingController {
     @GetMapping(value = "list")
     //显示全部数据
     public JSONResult getAllNews(){
+        System.out.println(1);
         List<Meeting> list=meetingService.getAllMeeting();
         return new JSONResult().ok(list);
     }
