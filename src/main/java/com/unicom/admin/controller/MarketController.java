@@ -80,8 +80,8 @@ public class MarketController {
 
     //删除
     @ApiOperation(value = "删除岗位")
-    @DeleteMapping(value = "delete")
-    public JSONResult delete(@RequestParam(name="id") int id){
+    @DeleteMapping(value = "delete/{id}")
+    public JSONResult delete(@PathVariable(name="id") int id){
         marketService.delete(id);
         return new JSONResult().ok("success");
     }

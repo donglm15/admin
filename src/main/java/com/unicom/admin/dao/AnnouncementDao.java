@@ -85,7 +85,7 @@ public interface AnnouncementDao {
             "msg)",
             "values (#{meetingID,jdbcType=VARCHAR}, #{meetingTheme,jdbcType=VARCHAR}, ",
             "#{department,jdbcType=VARCHAR}, #{meetingDate,jdbcType=TIMESTAMP}, ",
-            "#{meetingStatusid,jdbcType=TINYINT}, #{meetingPosition,jdbcType=VARCHAR}, ",
+            "#{announcementMeetingStatus.id,jdbcType=TINYINT}, #{meetingPosition,jdbcType=VARCHAR}, ",
             "#{meetingType,jdbcType=VARCHAR}, ",
             "#{user,jdbcType=VARCHAR}, #{meetingPeople,jdbcType=VARCHAR}, ",
             "#{dateLong,jdbcType=TINYINT}, #{presenter,jdbcType=VARCHAR}, ",
@@ -94,10 +94,27 @@ public interface AnnouncementDao {
     })
     int saveOne(Announcement announcement);
 
+////    meetingDate=#{announcement.delayDate},
+//    修改延迟post
+//    @Update("<script>" +
+//            "update announcement set meetingStatusid=#{statusid}" +
+//
+//            "<if test='announcement.delayDate!=null and announcement.delayDate!=\"\"'>" +
+//                ",meetingDate=#{announcement.delayDate}" +
+//            "</if>" +
+//
+//            " where id=#{announcement.id}" +
+//
+//            "</script>")
+//    int updateDelay(
+//            @Param(value = "statusid") int statusid,
+//            @Param(value = "announcement") Announcement announcement);
 
-//    @SelectKey(statement="SELECT LAST_INSERT_ID()", keyProperty="id", before=false, resultType=int.class)
-//    int insert(Announcement record);
+    @Update("update announcement set meetingStatusid=#{meetingStatusid},meetingDate=#{delayDate}" +
+            " where id=#{id}")
+    int updateDelay(
+//            @Param(value = "statusid") int statusid,
+//            @Param(value = "announcement") Announcement announcement
+            Announcement announcement);
 
-//    @SelectKey(statement="SELECT LAST_INSERT_ID()", keyProperty="id", before=false, resultType=int.class)
-//    int insertSelective(Announcement record);
 }
