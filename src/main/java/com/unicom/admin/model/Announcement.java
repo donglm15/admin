@@ -14,7 +14,7 @@ public class Announcement {
     private String department;
     //格式化
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm",locale = "zh",timezone = "GMT+8")
-
+//        @JsonFormat(pattern = "yyyy-MM-dd HH:mm",locale = "zh")
     private Date meetingDate;
 
     private int meetingStatusid;
@@ -31,6 +31,7 @@ public class Announcement {
 
     private String meetingPosition;
 
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm",locale = "zh",timezone = "GMT+8")
     private Date delayDate;
 
     private String meetingType;

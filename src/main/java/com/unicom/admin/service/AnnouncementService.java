@@ -31,4 +31,11 @@ public class AnnouncementService {
 //        System.out.println(announcement.getId());
         return announcement.getId();
     }
+    //修改delay
+//    public int update(int statusid,Announcement announcement){
+//        return announcementDao.updateDelay(statusid,announcement);
+//    }
+    public int update(Announcement announcement){
+        return announcementDao.updateDelay(announcement);
+    }
 }
