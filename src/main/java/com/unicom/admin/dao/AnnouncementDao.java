@@ -10,7 +10,7 @@ import java.util.List;
 @Repository
 @Mapper
 public interface AnnouncementDao {
-    //前端列表
+    //前端列表1
     @Select("select * from announcement")
     @Results({
             @Result(column = "meetingStatusid",
@@ -51,6 +51,7 @@ public interface AnnouncementDao {
             "<if test='endDateTime!=null and endDateTime!=\"\"'>" +
             " and meetingDate &lt;= #{endDateTime}" +
             "</if> " +
+            "order by id desc"+
             "</script>")
     @Results({
             @Result(column = "meetingStatusid",
