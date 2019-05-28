@@ -1,21 +1,18 @@
 package com.unicom.admin.model;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 import java.util.Date;
 
 public class PageProduce {
-    private int produce_id;
-
-    private Date produce_datatime;
-
-    private String produce_type;
-
-    private String produce_name;
-
-    private String produce_team_name;
-
-    private int produce_importance;
-
-    private String produce_details;
+   private int produce_id;
+//   @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss",locale = "zh")
+   private String produce_datatime;
+   private String produce_type;
+   private String produce_name;
+   private String produce_team_name;
+   private String produce_importance;
+   private String produce_details;
 
     public int getProduce_id() {
         return produce_id;
@@ -25,11 +22,11 @@ public class PageProduce {
         this.produce_id = produce_id;
     }
 
-    public Date getProduce_datatime() {
+    public String getProduce_datatime() {
         return produce_datatime;
     }
 
-    public void setProduce_datatime(Date produce_datatime) {
+    public void setProduce_datatime(String produce_datatime) {
         this.produce_datatime = produce_datatime;
     }
 
@@ -38,7 +35,7 @@ public class PageProduce {
     }
 
     public void setProduce_type(String produce_type) {
-        this.produce_type = produce_type == null ? null : produce_type.trim();
+        this.produce_type = produce_type;
     }
 
     public String getProduce_name() {
@@ -46,7 +43,7 @@ public class PageProduce {
     }
 
     public void setProduce_name(String produce_name) {
-        this.produce_name = produce_name == null ? null : produce_name.trim();
+        this.produce_name = produce_name;
     }
 
     public String getProduce_team_name() {
@@ -54,14 +51,14 @@ public class PageProduce {
     }
 
     public void setProduce_team_name(String produce_team_name) {
-        this.produce_team_name = produce_team_name == null ? null : produce_team_name.trim();
+        this.produce_team_name = produce_team_name;
     }
 
-    public int getProduce_importance() {
+    public String getProduce_importance() {
         return produce_importance;
     }
 
-    public void setProduce_importance(int produce_importance) {
+    public void setProduce_importance(String produce_importance) {
         this.produce_importance = produce_importance;
     }
 
@@ -70,6 +67,19 @@ public class PageProduce {
     }
 
     public void setProduce_details(String produce_details) {
-        this.produce_details = produce_details == null ? null : produce_details.trim();
+        this.produce_details = produce_details;
+    }
+
+    public PageProduce() {
+    }
+
+    public PageProduce(int produce_id, String produce_datatime, String produce_type, String produce_name, String produce_team_name, String produce_importance, String produce_details) {
+        this.produce_id = produce_id;
+        this.produce_datatime = produce_datatime;
+        this.produce_type = produce_type;
+        this.produce_name = produce_name;
+        this.produce_team_name = produce_team_name;
+        this.produce_importance = produce_importance;
+        this.produce_details = produce_details;
     }
 }
