@@ -82,7 +82,7 @@ public interface MemberDao {
     int deleteMemberById(int id);
 
 
-    @Update("update member set date=#{date},membertypeid=#{memberType.id}," +
+    @Update("update member set date=#{date},membertypeid=#{membertypeid}," +
             "title=#{title},content=#{content},`readings`=#{readings} where id=#{id}")
     int updateMember(Member member);
 

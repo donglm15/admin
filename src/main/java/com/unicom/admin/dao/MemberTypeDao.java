@@ -12,7 +12,6 @@ public interface MemberTypeDao {
 
     @Select("select * from memberType where id=#{id}")
     @Results({
-            @Result(column = "typename",property = "type"),
             @Result(column = "typename",property = "typename")
     })
     MemberType getMemberTypeById(int id);
