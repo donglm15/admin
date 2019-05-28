@@ -33,30 +33,27 @@ public class PageProduceController {
     }
 
     //分页查询
-    @GetMapping(value = "lost")
+    @GetMapping(value = "lisst")
     @ApiOperation(value = "后台分页获取产品列表")
     @ApiImplicitParams({
             @ApiImplicitParam(name = "page", value = "分页页码", required = true,dataType = "int"),
             @ApiImplicitParam(name = "limit", value = "每页显示条数", required = true,dataType = "int"),
             @ApiImplicitParam(name = "produce_name", value = "产品名称",dataType = "string"),
-            @ApiImplicitParam(name = "produce_importance", value = "重要性",dataType = "int"),
-            @ApiImplicitParam(name = "produce_type", value = "产品类型",dataType = "string"),
-            @ApiImplicitParam(name = "order", value = "排序方式",dataType = "string")
+            @ApiImplicitParam(name = "produce_importance", value = "重要性",dataType = "string"),
+            @ApiImplicitParam(name = "order", value = "排序方式",dataType = "string"),
+            @ApiImplicitParam(name = "produce_type", value = "产品类型",dataType = "string")
     })
-    public JSONResult select(
+    public JSONResult getAllPageProduce(
             @RequestParam(value = "page",defaultValue = "1") int page,
             @RequestParam(value = "limit",defaultValue = "20") int limit,
             @RequestParam(name = "produce_name",defaultValue = "") String produce_name,
             @RequestParam(name = "produce_importance",defaultValue = "") int produce_importance,
-            @RequestParam(name = "produce_type",defaultValue = "") String produce_type,
-            @RequestParam(name = "sort",defaultValue = "+id") String order
-    ){
+            @RequestParam(name = "sort",defaultValue = "+id") String order,
+            @RequestParam(name = "produce_type",defaultValue = "") String produce_type
+            ){
         PageHelper.startPage(page,limit);
-
-        List<PageProduce> list=pageProduceService.getAllPageProduce(produce_name,produce_importance,produce_type,order);
-
+        List<PageProduce> list=pageProduceService.getAllPageProduce(produce_name,produce_importance,order,produce_type);
         PageInfo<PageProduce> pageInfo =new PageInfo<>(list);
-
         return new JSONResult().ok(pageInfo);
     }
 
@@ -67,6 +64,7 @@ public class PageProduceController {
     @ApiOperation(value = "插入新建产品")
     @ApiImplicitParam(name = "pageProduce", value = "新建产品内容", required = true, dataType = "PageProduce")
     public JSONResult insertPageProduce(@RequestBody PageProduce pageProduce){
+                System.out.println(pageProduce.getProduce_datatime());
         pageProduceService.insertPageProduce(pageProduce);
         return new JSONResult().ok("success");
     }

@@ -13,14 +13,6 @@ import java.util.List;
 public interface PageProduceDao {
 
     @Select("select * from pageProduce")
-//    @Results({
-//            @Result(
-//                    column = "produce_id",
-//                    property = "pageProduce",
-//                    one = @One(select = "com.unicom.admin.dao.PageProduceDao.getPageProduceById",
-//                            fetchType = FetchType.EAGER)
-//            )
-//    })
     List<PageProduce> getAll();
 
     //分页查询
@@ -30,7 +22,7 @@ public interface PageProduceDao {
             "and produce_name like '%${produce_name}%'"+
             "</if>"+
             "<if test='produce_importance!=null and produce_importance!=\"\"'>" +
-            "and produce_importance like '%${produce_importance}%'"+
+            "and produce_importance = #{produce_importance}"+
             "</if>"+
             "<if test='produce_type!=null and produce_type!=\"\"'>" +
             "and produce_type like '%${produce_type}%'"+
@@ -45,19 +37,20 @@ public interface PageProduceDao {
     List<PageProduce> getAllPageProduce(
     @Param("produce_name") String produce_name,
     @Param("produce_importance") int produce_importance,
-    @Param("produce_type") String produce_type,
-    @Param("order") String order
+    @Param("order") String order,
+    @Param("produce_type") String produce_type
     );
 
     //增
-    @Insert({"insert into pageProduce (produce_datatime,produce_type,produce_name,produce_team_name,produce_importance,produce_details) ",
-            "(#{produce_datatime},#{produce_type},#{produce_name},#{produce_team_name},#{produce_importance},#{produce_details})"})
+    @Insert({"insert into pageProduce (produce_datatime,produce_type,produce_name,produce_team_name,produce_importance,produce_details)",
+            "values (#{produce_datatime},#{produce_type},#{produce_name},#{produce_team_name},#{produce_importance},#{produce_details})"})
     int insertPageProduce(PageProduce pageProduce);
 
 
     //删
-    @Delete("delete from pageProduce where produce_id=#{produce_id}")
-    int deletePageProduce(int produce_id);
+    @Delete("delete from pageProduce" +
+            "where produce_id=#{produce_id,jdbcType=TINYINT}"
+    ) int deletePageProduce(int produce_id);
 
     //获取产品详情
     @Select("select * from pageProduce where produce_id=#{produce_id}")
@@ -66,10 +59,11 @@ public interface PageProduceDao {
     //更新产品信息
     @Update({
             "update pageProduce",
-            "produce_datatime = #{produce_datatime},",
+            "set produce_datatime = #{produce_datatime},",
             "produce_name = #{produce_name},",
             "produce_importance = #{produce_importance},",
-            "produce_type = #{produce_type},"
+            "produce_type = #{produce_type}",
+            "where produce_id = #{produce_id,jdbcType=TINYINT}"
     })
     int updatePageProduce(PageProduce pageProduce);
 
