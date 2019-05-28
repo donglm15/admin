@@ -5,6 +5,7 @@ import com.github.pagehelper.PageInfo;
 import com.unicom.admin.model.JSONResult;
 import com.unicom.admin.model.Market;
 import com.unicom.admin.service.MarketService;
+import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
@@ -15,6 +16,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping(value = "market")
+@Api(tags = "联通之家-人才管理模块")
 public class MarketController {
     //前端查询表
     @Autowired
