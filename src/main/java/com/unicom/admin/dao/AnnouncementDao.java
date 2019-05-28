@@ -94,10 +94,18 @@ public interface AnnouncementDao {
     })
     int saveOne(Announcement announcement);
 
-//    meetingDate=#{announcement.delayDate},
-    //修改延迟post
-//    @Update("update announcement set meetingStatusid=#{statusid},meetingDate=#{announcement.delayDate}" +
-//            " where id=#{announcement.id}")
+////    meetingDate=#{announcement.delayDate},
+//    修改延迟post
+//    @Update("<script>" +
+//            "update announcement set meetingStatusid=#{statusid}" +
+//
+//            "<if test='announcement.delayDate!=null and announcement.delayDate!=\"\"'>" +
+//                ",meetingDate=#{announcement.delayDate}" +
+//            "</if>" +
+//
+//            " where id=#{announcement.id}" +
+//
+//            "</script>")
 //    int updateDelay(
 //            @Param(value = "statusid") int statusid,
 //            @Param(value = "announcement") Announcement announcement);

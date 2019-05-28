@@ -84,6 +84,7 @@ public class AnnouncementController {
     public JSONResult update(
 //            @PathVariable(name = "statusid") int statusid,
             @RequestBody Announcement announcement){
+        System.out.println(announcement);
         announcementService.update(announcement);
         JSONResult result=new JSONResult().ok("success");
         return result;

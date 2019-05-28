@@ -13,7 +13,7 @@ public class Announcement {
 
     private String department;
     //格式化
-    @JsonFormat(pattern = "yyyy-MM-dd HH:mm",locale = "zh",timezone = "GMT+8")
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm",locale = "zh")
 //        @JsonFormat(pattern = "yyyy-MM-dd HH:mm",locale = "zh")
     private Date meetingDate;
 
@@ -31,7 +31,7 @@ public class Announcement {
 
     private String meetingPosition;
 
-    @JsonFormat(pattern = "yyyy-MM-dd HH:mm",locale = "zh",timezone = "GMT+8")
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm",locale = "zh")
     private Date delayDate;
 
     private String meetingType;
@@ -199,5 +199,28 @@ public class Announcement {
         this.data = data;
         this.meetingContent = meetingContent;
         this.msg = msg;
+    }
+
+    @Override
+    public String toString() {
+        return "Announcement{" +
+                "id=" + id +
+                ", meetingID='" + meetingID + '\'' +
+                ", meetingTheme='" + meetingTheme + '\'' +
+                ", department='" + department + '\'' +
+                ", meetingDate=" + meetingDate +
+                ", meetingStatusid=" + meetingStatusid +
+                ", announcementMeetingStatus=" + announcementMeetingStatus +
+                ", meetingPosition='" + meetingPosition + '\'' +
+                ", delayDate=" + delayDate +
+                ", meetingType='" + meetingType + '\'' +
+                ", user='" + user + '\'' +
+                ", meetingPeople='" + meetingPeople + '\'' +
+                ", dateLong=" + dateLong +
+                ", presenter='" + presenter + '\'' +
+                ", data='" + data + '\'' +
+                ", meetingContent='" + meetingContent + '\'' +
+                ", msg='" + msg + '\'' +
+                '}';
     }
 }
