@@ -51,6 +51,7 @@ public interface AnnouncementDao {
             "<if test='endDateTime!=null and endDateTime!=\"\"'>" +
             " and meetingDate &lt;= #{endDateTime}" +
             "</if> " +
+            "order by id desc"+
             "</script>")
     @Results({
             @Result(column = "meetingStatusid",
