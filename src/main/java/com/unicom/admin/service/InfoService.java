@@ -47,6 +47,7 @@ public class InfoService {
     }
 
     public int insert(Info info){
+        System.out.println(1);
         infoDao.insert(info);
         return info.getId();
     }
