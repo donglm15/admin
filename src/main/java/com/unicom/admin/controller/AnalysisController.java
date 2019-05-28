@@ -28,12 +28,12 @@ public class AnalysisController {
     private AnalysisService analysisService;
 
 
-    @RequestMapping(value = "list")
-    @ApiOperation(value = "获取产品经营情况")
-    public JSONResult getAllNews(){
-        List<Analysis> list= analysisService.getAll();
-       return new JSONResult().ok(list);
-    }
+//    @RequestMapping(value = "list")
+//    @ApiOperation(value = "获取产品经营情况")
+//    public JSONResult getAllNews(){
+//        List<Analysis> list= analysisService.getAll();
+//       return new JSONResult().ok(list);
+//    }
 
     @ApiOperation(value = "插入经营数据")
     @ApiImplicitParam(name = "analysis", value = "经营数据", required = true, dataType = "Analysis")
@@ -101,7 +101,7 @@ public class AnalysisController {
 
     @ApiOperation(value = "根据id删除经营数据")
     @ApiImplicitParam(name = "id",value = "经营数据id",required = true,dataType = "int")
-    @RequestMapping(value = "delete")
+    @GetMapping(value = "delete")
     public JSONResult delete( @RequestParam(name = "id") int id){
         analysisService.delete(id);
         JSONResult result=new JSONResult().ok("success");
