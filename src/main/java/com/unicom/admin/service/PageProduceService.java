@@ -19,9 +19,9 @@ public class PageProduceService {
     }
 
     //后端分页查询
-    public List<PageProduce> getAllPageProduce(String produce_name, int produce_importance, String produce_type, String order
+    public List<PageProduce> getAllPageProduce(String produce_name, int produce_importance,  String order,String produce_type
     ){
-        return pageProduceDao.getAllPageProduce(produce_name,produce_importance,produce_type,order);
+        return pageProduceDao.getAllPageProduce(produce_name,produce_importance,order,produce_type);
     }
 
 //    //新增（get）

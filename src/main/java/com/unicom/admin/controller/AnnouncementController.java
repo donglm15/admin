@@ -71,4 +71,22 @@ public class AnnouncementController {
         announcementService.insertOne(announcement);
         return new JSONResult().ok("success");
     }
+    //修改延迟post
+//    @PutMapping(value = "delay/{statusid}")
+//    public JSONResult update(
+//            @PathVariable(name = "statusid") int statusid,
+//            @RequestBody Announcement announcement){
+//        announcementService.update(statusid,announcement);
+//        JSONResult result=new JSONResult().ok("success");
+//        return result;
+//    }
+    @PutMapping(value = "delay")
+    public JSONResult update(
+//            @PathVariable(name = "statusid") int statusid,
+            @RequestBody Announcement announcement){
+        System.out.println(announcement);
+        announcementService.update(announcement);
+        JSONResult result=new JSONResult().ok("success");
+        return result;
+    }
 }
